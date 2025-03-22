@@ -50,3 +50,4 @@ coverage
 # Cursor files
 .cursor/
 .cursorrules
+progress.md
