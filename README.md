@@ -1,21 +1,55 @@
-# Shipping Container Management Prototype
+# Logistics Management System Prototype
 
-This is a prototype for a shipping container management system based on the provided design. It uses Ant Design components and Storybook for component development and visualization.
+A professional, mobile-first logistics management system prototype with a focus on sea freight and container shipping management. Built with React, TypeScript, and Ant Design, showcasing a complete user flow from booking to cargo input.
 
 ## Features
 
-- Container shipping management interface
-- CRUD operations for shipping items
-- Status tracking and filtering
-- Responsive design
+### Core Functionality
+- Complete sea freight container booking flow
+- Multi-language support (English/Chinese)
+- Professional logistics-themed design system
+- Mobile-first responsive interface (optimized for 375px)
+- Interactive Storybook documentation
+
+### Implemented Pages
+- Home Page (首页)
+  - Service selection
+  - Search functionality
+  - Business scope overview
+  - Step-by-step guide
+- Shipping Route Selection (航线选择)
+  - Transport type selection
+  - Port selection (departure/destination)
+- Cargo Details (货物信息)
+  - Container type selection
+  - Cargo specifications input
+  - Warehouse address management
+- Order Summary (订单确认)
+  - Shipping information review
+  - Cargo details confirmation
+  - Warehouse information display
+- Booking Success (哨头号创建成功)
+  - Booking number management
+  - Label download functionality
+- Cargo Input (录入商品信息)
+  - Product information entry
+  - Multi-language product naming
+  - Material selection
+
+### Design System
+- Professional color scheme with logistics-themed blue (#1890ff)
+- Consistent typography and spacing
+- Custom SVG icons for logistics operations
+- Mobile-optimized component library
 
 ## Technology Stack
 
-- React
+- React 18
 - TypeScript
 - Ant Design
-- Storybook
+- Storybook 7
 - Vite
+- i18n for translations
 
 ## Getting Started
 
@@ -54,12 +88,41 @@ npm run build-storybook
 
 The project follows atomic design principles:
 
-- `atoms`: Basic building blocks like buttons, inputs, etc.
-- `molecules`: Combinations of atoms like forms, search bars, etc.
-- `organisms`: Complex UI components composed of molecules and atoms
-- `templates`: Page layouts without specific content
-- `pages`: Complete pages composed of organisms, molecules, and atoms
+### Atoms
+- Buttons (mobile-optimized)
+- Inputs (touch-friendly)
+- Select Components
+- Language Switcher
+- Custom SVG Icons
+- Status Indicators
+
+### Molecules
+- SearchBar
+- ContainerCard
+- ServiceCard
+- InstructionCard
+- GlobalHeader with status bar
+
+### Pages
+Complete mobile-optimized pages following the sea freight container booking flow.
 
 ## Deployment
 
-The project is configured to automatically deploy the Storybook to GitHub Pages when changes are pushed to the main branch.
+The project's Storybook is automatically deployed to GitHub Pages when changes are pushed to the main branch. The deployment includes:
+- Interactive component documentation
+- Mobile viewport simulation (375px)
+- Sample data integration
+- Navigation flow demonstration
+
+## Next Steps
+
+- Implementation of remaining atomic components (Checkbox, Radio, etc.)
+- Enhanced navigation system
+- Data management integration
+- API integration
+- Comprehensive testing suite
+- Performance optimization
+
+## Live Demo
+
+Visit our [Storybook](https://dallanau.github.io/lg-prototype) to explore the components and pages in action.
