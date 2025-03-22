@@ -3,6 +3,7 @@ import { Typography, Button } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { colors, spacing } from '../../styles/theme';
+import LogoIcon from '../icons/LogoIcon';
 
 const { Title } = Typography;
 
@@ -52,11 +53,6 @@ const CenterSection = styled.div`
   display: flex;
   align-items: center;
   gap: ${spacing.sm};
-
-  .logo {
-    height: 24px;
-    width: auto;
-  }
 `;
 
 const RightSection = styled.div`
@@ -95,7 +91,7 @@ const GlobalHeader: React.FC<GlobalHeaderProps> = ({ title, onBack }) => {
           {onBack && <LeftOutlined className="back-button" onClick={onBack} />}
         </LeftSection>
         <CenterSection>
-          <img src="/logo.svg" alt="Logo" className="logo" />
+          <LogoIcon className="logo" />
         </CenterSection>
         <RightSection>
           <button className="language-select">中 (簡)</button>

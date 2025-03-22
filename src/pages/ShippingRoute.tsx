@@ -3,6 +3,7 @@ import { Layout, Radio, Select, Space, Button, Typography } from 'antd';
 import styled from 'styled-components';
 import { colors, spacing, borderRadius, shadows } from '../styles/theme';
 import GlobalHeader from '../components/layout/GlobalHeader';
+import { PageBreadcrumb } from '../components/layout';
 
 const { Title } = Typography;
 
@@ -109,11 +110,26 @@ const ShippingRoute: React.FC<ShippingRouteProps> = ({ onBack, onNext }) => {
     });
   };
 
+  const handleNavigate = (path: string) => {
+    // Navigation logic will be added later
+    console.log('Navigate to:', path);
+  };
+
   return (
     <StyledLayout>
-      <GlobalHeader title="新增委托" onBack={onBack} />
-
+      <GlobalHeader onBack={() => handleNavigate('/')} />
       <ContentContainer>
+        <PageBreadcrumb
+          items={[
+            {
+              title: '海运整柜',
+              onClick: () => handleNavigate('/')
+            },
+            {
+              title: '航线选择'
+            }
+          ]}
+        />
         <FormGroup>
           <div className="label">
             <span className="required">*</span>

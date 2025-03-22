@@ -4,6 +4,7 @@ import { CopyOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { colors, spacing, borderRadius } from '../styles/theme';
 import GlobalHeader from '../components/layout/GlobalHeader';
+import { PageBreadcrumb } from '../components/layout';
 
 const { Text } = Typography;
 
@@ -112,10 +113,38 @@ const BookingSuccess: React.FC<BookingSuccessProps> = ({
     navigator.clipboard.writeText(bookingData.bookingNumber);
   };
 
+  const handleNavigate = (path: string) => {
+    // Navigation logic will be added later
+    console.log('Navigate to:', path);
+  };
+
   return (
     <StyledLayout>
       <GlobalHeader />
       <ContentContainer>
+        <PageBreadcrumb
+          items={[
+            {
+              title: '海运整柜',
+              onClick: () => handleNavigate('/')
+            },
+            {
+              title: '航线选择',
+              onClick: () => handleNavigate('/shipping-route')
+            },
+            {
+              title: '货物信息',
+              onClick: () => handleNavigate('/cargo-details')
+            },
+            {
+              title: '订单确认',
+              onClick: () => handleNavigate('/order-summary')
+            },
+            {
+              title: '哨头号创建成功'
+            }
+          ]}
+        />
         <Title>哨头号创建成功</Title>
 
         <InfoCard>

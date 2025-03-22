@@ -4,6 +4,7 @@ import { InfoCircleOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { colors, spacing, borderRadius, shadows } from '../styles/theme';
 import GlobalHeader from '../components/layout/GlobalHeader';
+import { PageBreadcrumb } from '../components/layout';
 
 const { Text } = Typography;
 
@@ -230,11 +231,34 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ onBack, onNext, data }) => 
     setIsModalVisible(false);
   };
 
+  const handleNavigate = (path: string) => {
+    // Navigation logic will be added later
+    console.log('Navigate to:', path);
+  };
+
   return (
     <StyledLayout>
-      <GlobalHeader title="新增委托" onBack={onBack} />
-
+      <GlobalHeader onBack={() => handleNavigate('/cargo-details')} />
       <ContentContainer>
+        <PageBreadcrumb
+          items={[
+            {
+              title: '海运整柜',
+              onClick: () => handleNavigate('/')
+            },
+            {
+              title: '航线选择',
+              onClick: () => handleNavigate('/shipping-route')
+            },
+            {
+              title: '货物信息',
+              onClick: () => handleNavigate('/cargo-details')
+            },
+            {
+              title: '订单确认'
+            }
+          ]}
+        />
         <SummarySection>
           <div className="section-title">基本委托信息</div>
           <DetailItem>

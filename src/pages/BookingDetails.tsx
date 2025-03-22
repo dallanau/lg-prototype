@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Layout, Button, Collapse, Modal, message, Space, Card, Typography, Divider, Row, Col, Alert, Flex, Form, Input, Select, DatePicker, Radio, List, Descriptions, Badge, Timeline, Statistic, Avatar, Tag } from 'antd';
+import { Layout, Button, Collapse, Modal, message, Space, Card, Typography, Divider, Row, Col, Alert, Flex, Form, Input, Select, DatePicker, Radio, List, Descriptions, Badge, Timeline, Statistic, Avatar, Tag, Breadcrumb } from 'antd';
 import styled from 'styled-components';
 import { colors, spacing, borderRadius } from '../styles/theme';
 import GlobalHeader from '../components/layout/GlobalHeader';
@@ -9,6 +9,9 @@ import QRCode from 'qrcode';
 import html2canvas from 'html2canvas';
 import FileUploadItem from '../components/molecules/FileUploadItem';
 import ShipperModal from '../components/organisms/ShipperModal';
+import LogoIcon from '../components/icons/LogoIcon';
+import BarcodeIcon from '../components/icons/BarcodeIcon';
+import QRCodeIcon from '../components/icons/QRCodeIcon';
 import dayjs from 'dayjs';
 
 const { Title, Text, Paragraph } = Typography;
@@ -23,20 +26,34 @@ const StyledLayout = styled(Layout)`
 
 const ContentContainer = styled.div`
   margin-top: 76px;
-  padding: ${spacing.sm};
   padding-bottom: 120px;
+  background: ${colors.background.default};
 `;
 
-const Breadcrumb = styled.div`
+const StyledBreadcrumb = styled(Breadcrumb)`
   display: flex;
   align-items: center;
-  gap: ${spacing.xs};
-  margin-bottom: ${spacing.lg};
-  font-size: 14px;
-  color: ${colors.text.secondary};
+  margin: ${spacing.sm} 0 ${spacing.lg};
+  padding: 0 ${spacing.md};
+  
+  .ant-breadcrumb-link {
+    font-size: 14px;
+    color: ${colors.text.secondary};
+    cursor: pointer;
+    
+    &:hover {
+      color: ${colors.primary};
+    }
+    
+    &.current {
+      color: ${colors.text.primary};
+      cursor: default;
+    }
+  }
 
-  .current {
-    color: ${colors.text.primary};
+  .ant-breadcrumb-separator {
+    margin: 0 ${spacing.xs};
+    color: ${colors.text.secondary};
   }
 `;
 
@@ -241,7 +258,6 @@ const ShipperInfo = styled.div`
     .upload-text {
       color: ${colors.text.secondary};
       font-size: 14px;
-      margin-bottom: 4px;
     }
 
     .upload-hint {
@@ -633,6 +649,9 @@ const TaxInfo = styled.div`
 const ShippingLabelModal = styled(Modal)`
   @media print {
     .ant-modal-header,
+    .ant-modal-footer,
+    .ant-alert,
+    .ant-typography.ant-typography-secondary,
     .action-buttons {
       display: none !important;
     }
@@ -643,6 +662,65 @@ const ShippingLabelModal = styled(Modal)`
 
     .ant-modal-body {
       padding: 0;
+    }
+
+    .shipping-label {
+      width: 150mm;
+      height: 100mm;
+      padding: 5mm !important;
+      margin: 0 !important;
+      
+      .ant-card-body {
+        padding: 0 !important;
+      }
+
+      .ant-space {
+        gap: 4mm !important;
+      }
+
+      .ant-typography {
+        margin-bottom: 0 !important;
+        font-size: 8pt !important;
+        line-height: 1.2 !important;
+      }
+
+      .ant-typography.ant-typography-secondary {
+        font-size: 7pt !important;
+      }
+
+      .logo {
+        width: 15mm !important;
+        height: auto !important;
+      }
+
+      .barcode-section {
+        height: 15mm !important;
+      }
+
+      .qr-code {
+        width: 20mm !important;
+        height: 20mm !important;
+      }
+
+      .priority-badge {
+        padding: 1mm 2mm !important;
+        font-size: 8pt !important;
+      }
+
+      .section-header {
+        padding: 1mm 2mm !important;
+        margin-bottom: 1mm !important;
+        font-size: 8pt !important;
+      }
+
+      .info-grid {
+        font-size: 8pt !important;
+        line-height: 1.2 !important;
+      }
+
+      .signature-section {
+        height: 10mm !important;
+      }
     }
   }
 `;
@@ -841,6 +919,30 @@ const ProductItem = styled(Card)`
       color: #1890ff;
       background: transparent;
     }
+  }
+`;
+
+const LabelContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${spacing.lg};
+  padding: ${spacing.lg};
+  background: white;
+
+  .logo {
+    width: 120px;
+    height: auto;
+  }
+
+  .barcode {
+    width: 100%;
+    height: auto;
+  }
+
+  .qr-code {
+    width: 128px;
+    height: 128px;
   }
 `;
 
@@ -1157,17 +1259,36 @@ const BookingDetails: React.FC<BookingDetailsProps> = ({
     />
   );
 
+  // Add this function to handle navigation
+  const handleNavigate = (path: string) => {
+    // Navigation placeholder, will be replaced with actual routing later
+    console.log('Navigate to:', path);
+    if (path === '/' && onBack) {
+      onBack();
+    }
+  };
+
   return (
     <StyledLayout>
-      <GlobalHeader />
+      <GlobalHeader onBack={() => handleNavigate('/')} />
       <ContentContainer>
-        <Breadcrumb>
-          <span>首页</span>
-          <span>{'>'}</span>
-          <span>哨头号 {bookingNumber}</span>
-          <span>{'>'}</span>
-          <span className="current">查看详情</span>
-        </Breadcrumb>
+        <StyledBreadcrumb>
+          <Breadcrumb.Item onClick={() => handleNavigate('/')}>
+            海运整柜
+          </Breadcrumb.Item>
+          <Breadcrumb.Item onClick={() => handleNavigate('/shipping-route')}>
+            航线选择
+          </Breadcrumb.Item>
+          <Breadcrumb.Item onClick={() => handleNavigate('/cargo-details')}>
+            货物信息
+          </Breadcrumb.Item>
+          <Breadcrumb.Item onClick={() => handleNavigate('/order-summary')}>
+            订单确认
+          </Breadcrumb.Item>
+          <Breadcrumb.Item className="current">
+            哨头号创建成功
+          </Breadcrumb.Item>
+        </StyledBreadcrumb>
 
         <OverviewCard>
           <div className="header">
@@ -2263,118 +2384,154 @@ const BookingDetails: React.FC<BookingDetailsProps> = ({
       </ContentContainer>
 
       <Modal
-        title="查看哨头面单"
+        title={null}
         open={isLabelModalVisible}
         onCancel={handleLabelModalClose}
         footer={null}
         width={450}
         centered
+        className="shipping-label-modal"
       >
-        <div ref={labelContentRef} className="shipping-label">
-          <Card className="label-card">
-            <div className="header-section">
-              <div className="company-info">
-                <img src="/logo.svg" alt="Logo" className="logo" />
-                <Text className="company-name">LogistiEXPRESS</Text>
+        <Card 
+          ref={labelContentRef} 
+          bodyStyle={{ padding: 16 }}
+          className="shipping-label"
+        >
+          <Space direction="vertical" size={8} style={{ width: '100%' }}>
+            {/* Header with Logo and Barcode */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {/* Company Logo and Name - More Compact */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <LogoIcon className="logo" style={{ width: 60 }} />
+                <div style={{ flex: 1 }}>
+                  <Text strong style={{ fontSize: 14, display: 'block', marginBottom: 0 }}>LogistiEXPRESS</Text>
+                  <Text type="secondary" style={{ fontSize: 10 }}>International Logistics</Text>
+                </div>
+                <Text style={{ 
+                  backgroundColor: '#1890ff', 
+                  color: 'white', 
+                  padding: '0 8px', 
+                  borderRadius: 4,
+                  fontSize: 12 
+                }}>SYD</Text>
               </div>
-              <div className="barcode-container">
-                <img ref={barcodeRef} alt="Barcode" className="barcode" />
-                <div className="code-info">
-                  <Text className="tracking-number">AU1000888</Text>
-                  <Text className="location-tag">SYD</Text>
+
+              {/* Full Width Barcode */}
+              <div className="barcode-section" style={{ width: '100%' }}>
+                <BarcodeIcon value={bookingNumber || 'AU1000888'} style={{ width: '100%', height: 40 }} />
+                <Text style={{ fontSize: 12 }}>{bookingNumber || 'AU1000888'}</Text>
+              </div>
+            </div>
+
+            {/* Main Content Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+              {/* Left Column */}
+              <div>
+                {/* Consignee Information */}
+                <div style={{ marginBottom: 8 }}>
+                  <Text strong style={{ fontSize: 12, display: 'block', backgroundColor: '#f5f5f5', padding: '2px 4px' }}>
+                    CONSIGNEE
+                  </Text>
+                  <div style={{ fontSize: 12, lineHeight: '16px' }}>
+                    <Text strong>HePinyu</Text><br />
+                    <Text>25 Lombard St</Text><br />
+                    <Text>FAIRFIELD NSW 2165</Text><br />
+                    <Text>Ph: 0406222886</Text>
+                  </div>
+                </div>
+
+                {/* Shipping Details */}
+                <div>
+                  <Text strong style={{ fontSize: 12, display: 'block', backgroundColor: '#f5f5f5', padding: '2px 4px' }}>
+                    SHIPMENT
+                  </Text>
+                  <div style={{ fontSize: 12, lineHeight: '16px' }}>
+                    <Text>Pieces: 1/32</Text><br />
+                    <Text>Weight: 14.25 kg</Text><br />
+                    <Text>Container: 20GP</Text><br />
+                    <Text>Ship Date: 12/11/24</Text>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div>
+                {/* Distribution Center */}
+                <div style={{ marginBottom: 8 }}>
+                  <Text strong style={{ fontSize: 12, display: 'block', backgroundColor: '#f5f5f5', padding: '2px 4px' }}>
+                    DISTRIBUTION CENTER
+                  </Text>
+                  <div style={{ fontSize: 12, lineHeight: '16px' }}>
+                    <Text>LogistiEXPRESS Sydney</Text><br />
+                    <Text>56a ANZAC ST</Text><br />
+                    <Text>CHULLORA NSW 2190</Text><br />
+                    <Text>Tel: +61 2 9738 0000</Text>
+                  </div>
+                </div>
+
+                {/* QR Code */}
+                <div style={{ textAlign: 'center' }}>
+                  <QRCodeIcon value={bookingNumber || 'AU1000888'} style={{ width: 80, height: 80 }} />
                 </div>
               </div>
             </div>
 
-            <div className="content-section">
-              <div className="section-title">Consignee Information</div>
-              <div className="info-list">
-                <Text>HePinyu</Text>
-                <br />
-                <Text>25 Lombard St</Text>
-                <br />
-                <Text>FAIRFIELD NSW 2165</Text>
-                <br />
-                <Text>Ph: 0406222886</Text>
-                <br />
-                <Text>ID: 100000</Text>
-              </div>
-
-              <div className="details-grid">
-                <div className="detail-item">
-                  <Text className="label">PCS</Text>
-                  <Text className="value">1</Text>
-                </div>
-                <div className="detail-item">
-                  <Text className="label">Dead weight</Text>
-                  <Text className="value">14.25 kg</Text>
-                </div>
-                <div className="detail-item">
-                  <Text className="label">Originate</Text>
-                  <Text className="value">CAN</Text>
-                </div>
-              </div>
-
-              <StyledDivider style={{ margin: `${spacing.md} 0` }} />
-
-              <div className="section-title">Return Address</div>
-              <div className="info-list">
-                <Text>56a ANZAC ST</Text>
-                <br />
-                <Text>Chullora NSW 2190</Text>
-              </div>
-            </div>
-
-            <div className="signature-section">
-              <Row gutter={16}>
+            {/* Footer */}
+            <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 8, marginTop: 'auto' }}>
+              <Row gutter={8}>
                 <Col span={12}>
-                  <div className="signature-box">
-                    <div className="box-label">Signature</div>
-                    <div className="signature-line"></div>
+                  <div style={{ 
+                    border: '1px solid #d9d9d9', 
+                    padding: 4, 
+                    borderRadius: 2,
+                    height: 24
+                  }}>
+                    <Text type="secondary" style={{ fontSize: 10 }}>Signature</Text>
                   </div>
                 </Col>
                 <Col span={12}>
-                  <div className="signature-box">
-                    <div className="box-label">Delivery Date</div>
-                    <div className="signature-line"></div>
+                  <div style={{ 
+                    border: '1px solid #d9d9d9', 
+                    padding: 4, 
+                    borderRadius: 2,
+                    height: 24
+                  }}>
+                    <Text type="secondary" style={{ fontSize: 10 }}>Date</Text>
                   </div>
                 </Col>
               </Row>
             </div>
+          </Space>
+        </Card>
 
-            <div className="qr-section">
-              <img ref={qrCodeRef} alt="QR Code" className="qr-code" />
-            </div>
-          </Card>
+        {/* These elements will be hidden during printing */}
+        <Alert
+          message="请务必下载哨头面单，打印并贴于每件货物外箱；如缺哨头面单，将无法正常入仓。"
+          type="warning"
+          showIcon
+          style={{ margin: '16px 0' }}
+        />
 
-          <Alert
-            message="请务必下载哨头面单，打印并贴于每件货物外箱；如缺哨头面单，将无法正常入仓。"
-            type="warning"
-            showIcon
-            className="warning-alert"
-          />
+        <Text type="secondary" style={{ display: 'block', margin: '16px 0' }}>
+          Note: For delivery confirmation, ensure signature capture and take 2 photos of delivered items
+        </Text>
 
-          <Text className="note-text">
-            Attempt signature then ATL + 2 photos (NO ATL at Apartment or unit)
-          </Text>
-
-          <Flex className="action-buttons" justify="space-between">
-            <Button
-              type="primary"
-              icon={<DownloadOutlined />}
-              onClick={handleDownload}
-            >
-              下载面单
-            </Button>
-            <Button
-              type="primary"
-              icon={<PrinterOutlined />}
-              onClick={handlePrint}
-            >
-              打印面单
-            </Button>
-          </Flex>
-        </div>
+        <Space style={{ display: 'flex', justifyContent: 'space-between' }} className="action-buttons">
+          <Button
+            type="primary"
+            icon={<DownloadOutlined />}
+            onClick={handleDownload}
+          >
+            下载面单
+          </Button>
+          <Button
+            type="primary"
+            icon={<PrinterOutlined />}
+            onClick={handlePrint}
+          >
+            打印面单
+          </Button>
+        </Space>
       </Modal>
     </StyledLayout>
   );

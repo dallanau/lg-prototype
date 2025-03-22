@@ -3,6 +3,7 @@ import { Layout, Input, Select, Button, Typography } from 'antd';
 import styled from 'styled-components';
 import { colors, spacing, borderRadius } from '../styles/theme';
 import GlobalHeader from '../components/layout/GlobalHeader';
+import { PageBreadcrumb } from '../components/layout';
 
 const { TextArea } = Input;
 
@@ -115,17 +116,42 @@ const CargoInput: React.FC<CargoInputProps> = ({
   onCancel,
   onSave,
 }) => {
+  const handleNavigate = (path: string) => {
+    // Navigation logic will be added later
+    console.log('Navigate to:', path);
+  };
+
   return (
     <StyledLayout>
-      <GlobalHeader />
+      <GlobalHeader onBack={() => handleNavigate('/booking-success')} />
       <ContentContainer>
-        <Breadcrumb>
-          <span>首页</span>
-          <span>{'>'}</span>
-          <span>哨头号 {bookingNumber}</span>
-          <span>{'>'}</span>
-          <span className="current">录入商品信息</span>
-        </Breadcrumb>
+        <PageBreadcrumb
+          items={[
+            {
+              title: '海运整柜',
+              onClick: () => handleNavigate('/')
+            },
+            {
+              title: '航线选择',
+              onClick: () => handleNavigate('/shipping-route')
+            },
+            {
+              title: '货物信息',
+              onClick: () => handleNavigate('/cargo-details')
+            },
+            {
+              title: '订单确认',
+              onClick: () => handleNavigate('/order-summary')
+            },
+            {
+              title: '哨头号创建成功',
+              onClick: () => handleNavigate('/booking-success')
+            },
+            {
+              title: '录入商品信息'
+            }
+          ]}
+        />
 
         <FormGroup>
           <div className="label">
