@@ -114,6 +114,15 @@ The project's Storybook is automatically deployed to GitHub Pages when changes a
 - Sample data integration
 - Navigation flow demonstration
 
+### Accessing the Deployment
+
+You can access the deployed Storybook in two ways:
+1. Direct URL: [https://dallanau.github.io/lg-prototype](https://dallanau.github.io/lg-prototype)
+2. Repository Settings: 
+   - Go to the repository settings
+   - Navigate to "Pages" in the left sidebar
+   - Look for the "Your site is live at" message
+
 ## Next Steps
 
 - Implementation of remaining atomic components (Checkbox, Radio, etc.)
