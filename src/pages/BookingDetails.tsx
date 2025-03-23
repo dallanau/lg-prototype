@@ -652,7 +652,8 @@ const ShippingLabelModal = styled(Modal)`
     .ant-modal-footer,
     .ant-alert,
     .ant-typography.ant-typography-secondary,
-    .action-buttons {
+    .action-buttons,
+    .ant-btn {
       display: none !important;
     }
 
@@ -669,6 +670,12 @@ const ShippingLabelModal = styled(Modal)`
       height: 100mm;
       padding: 5mm !important;
       margin: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      
+      .ant-card-head {
+        display: none !important;
+      }
       
       .ant-card-body {
         padding: 0 !important;
