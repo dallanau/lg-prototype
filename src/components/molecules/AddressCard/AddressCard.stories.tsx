@@ -50,7 +50,7 @@ A button component for adding new addresses that uses Ant Design's theme tokens 
   },
   decorators: [
     (Story) => (
-      <div style={{ padding: 24, background: '#f5f5f5' }}>
+      <div style={{ padding: 24 }}>
         <Story />
       </div>
     ),
