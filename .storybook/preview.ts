@@ -8,7 +8,7 @@ const preview: Preview = {
     controls: {
       matchers: {
         color: /(background|color)$/i,
-        date: /Date$/i,
+        date: /Date$/,
       },
     },
     viewport: {
@@ -27,6 +27,51 @@ const preview: Preview = {
             height: '736px',
           },
         },
+      },
+    },
+    options: {
+      storySort: {
+        order: [
+          'Introduction',
+          'Design System', [
+            'Colors',
+            'Typography',
+            'Spacing',
+            'Icons'
+          ],
+          'Foundation', [
+            'Action',
+            'Badge',
+            'Button',
+            'Input',
+            'Tag',
+            'StatusTag',
+            '*'
+          ],
+          'Components', [
+            'Message',
+            'AddressCard',
+            'StatusDisplay',
+            'Tab',
+            '*'
+          ],
+          'Sections', [
+            'ContainerList',
+            'ContainerForm',
+            'ContainerDetail',
+            '*'
+          ],
+          'Layout', [
+            'AppLayout',
+            '*'
+          ],
+          'Pages', [
+            'Home',
+            'BookingSuccess',
+            '*'
+          ],
+          '*'
+        ],
       },
     },
   },
