@@ -32,22 +32,30 @@ const preview: Preview = {
     options: {
       storySort: {
         order: [
+          // Documentation
           'Introduction',
+          
+          // Design tokens and guidelines
           'Design System', [
             'Colors',
             'Typography',
             'Spacing',
             'Icons'
           ],
+          
+          // 1. Atoms - Basic UI elements (smallest)
           'Foundation', [
             'Action',
             'Badge',
             'Button',
             'Input',
+            'Radio',
             'Tag',
             'StatusTag',
             '*'
           ],
+          
+          // 2. Molecules - Combinations of atoms
           'Components', [
             'Message',
             'AddressCard',
@@ -55,19 +63,30 @@ const preview: Preview = {
             'Tab',
             '*'
           ],
+          
+          // 3. Organisms - Complex components
           'Sections', [
             'ContainerList',
             'ContainerForm',
             'ContainerDetail',
+            'ShipmentForm',
+            'ShippingList',
             '*'
           ],
+          
+          // 4. Templates - Page layouts
           'Layout', [
             'AppLayout',
             '*'
           ],
+          
+          // 5. Pages - Complete screens (largest)
           'Pages', [
             'Home',
             'BookingSuccess',
+            'CargoDetails',
+            'OrderSummary',
+            'ShippingRoute',
             '*'
           ],
           '*'
