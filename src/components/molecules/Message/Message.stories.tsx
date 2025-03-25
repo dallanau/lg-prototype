@@ -6,6 +6,23 @@ const meta = {
   title: 'Molecules/Message',
   parameters: {
     layout: 'centered',
+    docs: {
+      description: {
+        component: `
+Message components for displaying various types of notifications:
+
+### Types
+- InfoMessage: For general information with optional action
+- TipsMessage: For important tips and notices with close button
+
+### Features
+- Customizable content
+- Interactive controls
+- Consistent styling with theme
+- Action buttons and close functionality
+        `,
+      },
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta;
@@ -13,24 +30,56 @@ const meta = {
 export default meta;
 
 export const Info: StoryObj<typeof InfoMessage> = {
-  render: () => (
+  args: {
+    children: '您有国际运单已到达目的地城市，正在配送中，请耐心等待，我们会第一时间通知您。',
+    actionText: '查看',
+  },
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'The content of the message',
+    },
+    actionText: {
+      control: 'text',
+      description: 'Text for the action button',
+    },
+    onActionClick: {
+      action: 'clicked',
+      description: 'Callback when action button is clicked',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class name',
+    },
+  },
+  render: (args) => (
     <div style={{ width: '600px' }}>
-      <InfoMessage
-        actionText="查看"
-        onActionClick={() => console.log('Action clicked')}
-      >
-        您有国际运单已到达目的地城市，正在配送中，请耐心等待，我们会第一时间通知您。
-      </InfoMessage>
+      <InfoMessage {...args} />
     </div>
   ),
 };
 
 export const Tips: StoryObj<typeof TipsMessage> = {
-  render: () => (
+  args: {
+    children: '截单日期为北京时间每周周日 24 点前，请在截单日期前支付，逾期的结果货物将滞留~',
+  },
+  argTypes: {
+    children: {
+      control: 'text',
+      description: 'The content of the message',
+    },
+    onClose: {
+      action: 'closed',
+      description: 'Callback when close button is clicked',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS class name',
+    },
+  },
+  render: (args) => (
     <div style={{ width: '600px' }}>
-      <TipsMessage onClose={() => console.log('Close clicked')}>
-        截单日期为北京时间每周周日 24 点前，请在截单日期前支付，逾期的结果货物将滞留~
-      </TipsMessage>
+      <TipsMessage {...args} />
     </div>
   ),
 };
