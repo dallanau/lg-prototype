@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { StatusDisplay } from './StatusDisplay';
 
 const meta = {
-  title: 'Molecules/StatusDisplay',
+  title: 'Components/StatusDisplay',
   component: StatusDisplay,
   parameters: {
     layout: 'centered',

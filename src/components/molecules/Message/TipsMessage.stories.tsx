@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TipsMessage } from './TipsMessage';
 
 const meta = {
-  title: 'Molecules/Message/TipsMessage',
+  title: 'Components/Message/TipsMessage',
   component: TipsMessage,
   parameters: {
     layout: 'centered',

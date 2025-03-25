@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import StatusTag from './StatusTag';
 
 const meta: Meta<typeof StatusTag> = {
-  title: 'Atoms/StatusTag',
+  title: 'Foundation/StatusTag',
   component: StatusTag,
   tags: ['autodocs'],
   argTypes: {

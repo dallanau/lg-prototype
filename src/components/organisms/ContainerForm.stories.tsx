@@ -4,7 +4,7 @@ import LanguageSwitcher from '../atoms/LanguageSwitcher';
 import '../../../src/i18n';
 
 const meta: Meta<typeof ContainerForm> = {
-  title: 'Organisms/ContainerForm',
+  title: 'Sections/ContainerForm',
   component: ContainerForm,
   tags: ['autodocs'],
   parameters: {

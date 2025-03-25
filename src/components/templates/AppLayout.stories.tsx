@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import AppLayout from './AppLayout';
 
 const meta: Meta<typeof AppLayout> = {
-  title: 'Templates/AppLayout',
+  title: 'Layout/AppLayout',
   component: AppLayout,
   tags: ['autodocs'],
   parameters: {

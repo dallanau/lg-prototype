@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Tab } from './Tab';
 
 const meta = {
-  title: 'Molecules/Tab',
+  title: 'Components/Tab',
   component: Tab,
   parameters: {
     layout: 'centered',

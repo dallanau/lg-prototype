@@ -4,7 +4,7 @@ import { ConfigProvider } from 'antd';
 import { AddAddressButton } from './AddressCard';
 
 const meta = {
-  title: 'Molecules/AddAddressButton',
+  title: 'Components/AddAddressButton',
   component: AddAddressButton,
   parameters: {
     layout: 'centered',

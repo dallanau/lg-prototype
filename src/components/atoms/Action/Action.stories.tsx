@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Action } from './Action';
 
 const meta = {
-  title: 'Atoms/Action',
+  title: 'Foundation/Action',
   component: Action,
   parameters: {
     layout: 'centered',
