@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { ShipmentForm } from './ShipmentForm';
 
 const meta: Meta<typeof ShipmentForm> = {
-  title: 'Sections/ShipmentForm',
+  title: 'Organisms/ShipmentForm',
   component: ShipmentForm,
   tags: ['autodocs'],
   parameters: {

@@ -3,7 +3,7 @@ import { InfoMessage } from './InfoMessage';
 import { TipsMessage } from './TipsMessage';
 
 const meta = {
-  title: 'Components/Message',
+  title: 'Molecules/Message',
   parameters: {
     layout: 'centered',
     docs: {

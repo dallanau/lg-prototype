@@ -20,7 +20,7 @@ const StoryLayout = styled.div`
 `;
 
 const meta = {
-  title: 'Pages/海运整柜',
+  title: '页面/海运整柜',
   parameters: {
     layout: 'fullscreen',
     viewport: {

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ContainerDetail from './ContainerDetail';
 
 const meta: Meta<typeof ContainerDetail> = {
-  title: 'Sections/ContainerDetail',
+  title: 'Organisms/ContainerDetail',
   component: ContainerDetail,
   tags: ['autodocs'],
   parameters: {
