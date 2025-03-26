@@ -44,7 +44,7 @@ const preview: Preview = {
           ],
           
           // 1. Atoms - Basic UI elements (smallest)
-          'Foundation', [
+          'Atoms', [
             'Action',
             'Badge',
             'Button',
@@ -56,7 +56,7 @@ const preview: Preview = {
           ],
           
           // 2. Molecules - Combinations of atoms
-          'Components', [
+          'Molecules', [
             'Message',
             'AddressCard',
             'StatusDisplay',
@@ -65,7 +65,7 @@ const preview: Preview = {
           ],
           
           // 3. Organisms - Complex components
-          'Sections', [
+          'Organisms', [
             'ContainerList',
             'ContainerForm',
             'ContainerDetail',
@@ -75,7 +75,7 @@ const preview: Preview = {
           ],
           
           // 4. Templates - Page layouts
-          'Layout', [
+          'Templates', [
             'AppLayout',
             '*'
           ],

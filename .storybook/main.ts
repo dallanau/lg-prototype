@@ -5,7 +5,7 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/preset-create-react-app",
+    "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
   ],
   framework: {
@@ -15,6 +15,12 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  env: (config) => ({
+    ...config,
+    // Dummy API keys for demonstration purposes only
+    STORYBOOK_AMAP_KEY: 'amap_dummy_key_1234567890',
+    STORYBOOK_GOOGLE_PLACES_KEY: 'google_places_dummy_key_1234567890',
+  }),
   core: {
     disableTelemetry: true,
   },
